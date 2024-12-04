@@ -1,4 +1,4 @@
-# MicroservicesUberRealTime
+# Microservices Uber Real Time
 
 # `/users/register` Endpoint Documentation
 
@@ -26,20 +26,15 @@ The request body should be in JSON format and must include the following fields:
 | `password`           | String | Yes      | The user's password (minimum 6 characters).    |
 
 #### **Example Request**:
-```json
-{
-    "fullname": {
-        "firstname": "John",
-        "lastname": "Doe"
-    },
-    "email": "johndoe@example.com",
-    "password": "password123"
-}
+- `user` (object):
+    -`fullname`: (object).
+        -`firstname` (string): User's first name (minimum 3 charecter).
+        -`lastname` (string): User's last name (minimum 3 charecter).
+    -`email` (string) : User's email address (must be a valid email address)
+    -`password` (string): User's password (minimum of 6 charecter)
+    -`token` (string): JWT Token
 
-# `/users/login` Endpoint Documentation
-
-## **Endpoint**:  
-`POST /users/login`
+# `/users/login`Endpoint Documentation
 
 ## **Description**:
 This endpoint allows registered users to log in by providing their email and password. Upon successful login, a JWT authentication token is returned, along with user details.
@@ -59,8 +54,5 @@ The request body should be in JSON format and must include the following fields:
 | `password`| String | Yes      | The user's password (minimum 6 characters).  |
 
 #### **Example Request**:
-```json
-{
-    "email": "johndoe@example.com",
-    "password": "password123"
-}
+ -`email` (string) : User's email address (must be a valid email address)
+-`password` (string): User's password (minimum of 6 charecter)
