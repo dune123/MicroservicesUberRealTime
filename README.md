@@ -35,3 +35,32 @@ The request body should be in JSON format and must include the following fields:
     "email": "johndoe@example.com",
     "password": "password123"
 }
+
+# `/users/login` Endpoint Documentation
+
+## **Endpoint**:  
+`POST /users/login`
+
+## **Description**:
+This endpoint allows registered users to log in by providing their email and password. Upon successful login, a JWT authentication token is returned, along with user details.
+
+---
+
+## **Request**:
+### **Headers**:
+- `Content-Type: application/json`
+
+### **Body**:
+The request body should be in JSON format and must include the following fields:
+
+| Field     | Type   | Required | Description                                   |
+|-----------|--------|----------|-----------------------------------------------|
+| `email`   | String | Yes      | The user's email address (must be valid).    |
+| `password`| String | Yes      | The user's password (minimum 6 characters).  |
+
+#### **Example Request**:
+```json
+{
+    "email": "johndoe@example.com",
+    "password": "password123"
+}
