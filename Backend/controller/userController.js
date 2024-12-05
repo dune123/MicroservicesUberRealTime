@@ -1,6 +1,6 @@
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
-const User=require('../models/UserModel')
+const BlackListTokenModel=require('../models/BlackListTokenModel')
 const { validationResult } =require('express-validator');
 const UserModel = require('../models/UserModel');
 
@@ -26,7 +26,7 @@ module.exports.registerUser=async(req,res,next)=>{
 
         const hashedPassword=await bcrypt.hash(password,10);
 
-        const user=new User({
+        const user=new UserModel({
             fullname:{
                 firstname:fullname.firstname,
                 lastname:fullname.lastname
@@ -50,6 +50,7 @@ module.exports.registerUser=async(req,res,next)=>{
     }
 }
 
+//login routes
 module.exports.loginUser=async(req,res,next)=>{
     try {
         const errors=validationResult(req);
@@ -75,12 +76,35 @@ module.exports.loginUser=async(req,res,next)=>{
 
         const authToken=jwt.sign({_id:user._id},
             process.env.JWT_SECRET_KEY,
-            {expiresIn:'7d'}
+            {expiresIn:'24h'}
         )
 
         return res.status(200).json({
            authToken,user
         })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error:"Internal Server Error"})
+    }
+}
+
+module.exports.getUserProfile=async(req,res,next)=>{
+    try {
+        const currentUser=req.user;
+        return res.status(200).json({currentUser})
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({error:"Internal Server Error"})
+    }
+}
+
+module.exports.logoutUser=async(req,res,next)=>{
+    try {
+        const token=req.cookies.token||req.headers.authorization.split(" ")[1];
+
+        await BlackListTokenModel.create({token})
+
+        return res.status(200).json({message:"Logged Out"})
     } catch (error) {
         console.log(error);
         return res.status(500).json({error:"Internal Server Error"})
