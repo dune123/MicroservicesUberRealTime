@@ -73,8 +73,6 @@ The request body should be in JSON format and must include the following fields:
     -`password` (string): User's password (minimum of 6 charecter)
     -`token` (string): JWT Token
 
-# Microservices Uber Real Time
-
 ## `/captain/register` Endpoint Documentation
 
 ### **Endpoint**:  
@@ -106,19 +104,29 @@ The request body should be in JSON format and must include the following fields:
 | `vehicle.capacity`   | Integer | Yes      | The seating capacity of the vehicle (minimum value: 1).                    |
 | `vehicle.vehicleType`| String  | Yes      | The type of vehicle (must be one of: `car`, `motorcycle`, or `auto`).      |
 
+
 #### **Example Request**:
-```json
-{
-  "fullname": {
-    "firstname": "John",
-    "lastname": "Doe"
-  },
-  "email": "john.doe@example.com",
-  "password": "securePassword123",
-  "vehicle": {
-    "color": "Blue",
-    "plate": "XYZ123",
-    "capacity": 4,
-    "vehicleType": "car"
-  }
-}
+ -`fullname`: (object).
+        -`firstname` (string): User's first name (minimum 3 charecter).
+        -`lastname` (string): User's last name (minimum 3 charecter).
+    -`email` (string) : User's email address (must be a valid email address)
+    -`password` (string): User's password (minimum of 6 charecter)
+    -`vehicle` (object): Contains the vehicle details.
+        -`color` (string): The color of the user's vehicle (minimum 3 charecter)
+        -`plate` (string): The plate Number of the user's vehicle (minimum 6 charecter)
+        -`capacity` (string): The color of the user's vehicle capacity
+        -`vehicleType` (string): The color of the user's vehicle type
+
+#### **Example Response**:
+
+ -`fullname`: (object).
+        -`firstname` (string): User's first name (minimum 3 charecter).
+        -`lastname` (string): User's last name (minimum 3 charecter).
+    -`email` (string) : User's email address (must be a valid email address)
+    -`password` (string): User's password (minimum of 6 charecter)
+    -`vehicle` (object): Contains the vehicle details.
+        -`color` (string): The color of the user's vehicle (minimum 3 charecter)
+        -`plate` (string): The plate Number of the user's vehicle (minimum 6 charecter)
+        -`capacity` (string): The color of the user's vehicle capacity
+        -`vehicleType` (string): The color of the user's vehicle type 
+ -`token`(string): JWT Token
