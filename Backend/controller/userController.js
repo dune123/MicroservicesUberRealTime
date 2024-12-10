@@ -42,7 +42,7 @@ module.exports.registerUser=async(req,res,next)=>{
             {expiresIn:'7d'}
         )
 
-        return res.status(200).json({message:"User creared successfully",savedUser,authToken});
+        return res.status(201).json({message:"User creared successfully",savedUser,authToken});
 
     } catch (error) {
         console.log(error);
