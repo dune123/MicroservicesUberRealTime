@@ -17,13 +17,13 @@ const CaptainProtectedWrap = ({children}) => {
             navigate('/captain-login');
         }
 
-        axios.post(`${import.meta.env.VITE_BASE_URL}/captain/profile`,{
+        axios.get(`${import.meta.env.VITE_BASE_URL}/captain/getCaptainProfile`,{
             headers:{
                 Authorization:`Bearer ${token}`,
             }
         }).then((res)=>{
             if(res.status===200){
-                setCaptain(response.data.captain);
+                setCaptain(res.data.captain);
                 setIsLoading(false);
             }
         })

@@ -64,6 +64,7 @@ module.exports.loginUser=async(req,res,next)=>{
         //in model i did select false that means i dont want password to come and in order to get password i have to do '+password'
         const user=await UserModel.findOne({email}).select('+password')
 
+        
         if(!user){
             return res.status(401).json({message:"Invalid email or password"})
         }

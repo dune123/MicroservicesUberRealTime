@@ -12,6 +12,9 @@ import UserProtextWrapper from "./pages/UserProtextWrapper";
 import UserLogout from "./pages/UserLogout";
 import CaptainHome from "./pages/CaptainHome";
 import CaptainProtectedWrap from "./pages/CaptainProtectedWrap";
+import Riding from "./pages/Riding";
+import CaptainRiding from "./pages/CaptainRiding";
+import 'remixicon/fonts/remixicon.css'
 
 function App() {
   const ans = useContext(UserDataContext);
@@ -22,9 +25,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Start />} />
         <Route path="/login" element={<UserLogin />} />
+        <Route path="/riding" element={<Riding />} />
         <Route path="/signup" element={<UserRegister />} />
         <Route path="/captain-login" element={<CaptainLogin />} />
         <Route path="/captain-signup" element={<CaptainSignUp />} />
+        <Route path="/captain-riding" element={<CaptainRiding/>}/>
         <Route
           path="/home"
           element={

@@ -24,7 +24,7 @@ const UserLogin = () => {
         if(response.status===200){
             const data=response.data;
             setUser(data.user);
-            console.log(data);
+           
             localStorage.setItem('token',data.authToken);
             navigate('/home');
         }
