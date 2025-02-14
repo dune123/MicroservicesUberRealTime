@@ -6,7 +6,7 @@ import CaptainDetail from "../components/CaptainDetail";
 import RidePopUp from "../components/RidePopUp";
 import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
 import { CaptainDataContext } from "../context/captainContext";
-import { SocketContext } from "../context/SocketContext";
+import { SocketContext } from "../context/socketContext";
 import axios from "axios";
 
 const CaptainHome = () => {
