@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import CaptainDetail from "../components/CaptainDetail";
 import RidePopUp from "../components/RidePopUp";
 import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
-import { CaptainDataContext } from "../context/CaptainContext";
+import { CaptainDataContext } from "../context/captainContext";
 import { SocketContext } from "../context/SocketContext";
 import axios from "axios";
 
