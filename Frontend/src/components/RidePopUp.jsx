@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RidePopUp = ({setRidePopUpPanel,setConfirmRidePopUpPanel}) => {
+const RidePopUp = ({ride,setRidePopUpPanel,setConfirmRidePopUpPanel,confirmRide}) => {
   return (
     <div>
          <h5
@@ -13,7 +13,7 @@ const RidePopUp = ({setRidePopUpPanel,setConfirmRidePopUpPanel}) => {
         <div className='flex items-center justify-between p-3 bg-yellow-400 rounded-lg mt-4'>
             <div className='flex items-center gap-3'>
                 <img className='h-12 rounded-full object-cover w-10' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdlMd7stpWUCmjpfRjUsQ72xSWikidbgaI1w&s"/>
-                <h2 className='text-lg font-medium'>Mayank Pawar</h2>
+                <h2 className='text-lg font-medium'>{ride?.user.fullname.firstname+" "+ride?.user.fullname.lastname}</h2>
             </div>
             <h5 className='text-lg font-semibold'>2.2 KM</h5>
         </div>
@@ -23,20 +23,20 @@ const RidePopUp = ({setRidePopUpPanel,setConfirmRidePopUpPanel}) => {
             <i className="ri-map-pin-user-fill"></i>
             <div>
                 <h3 className='text-lg font-medium'>562/11-A</h3>
-                <p className='text-base text-gray-600 -mt-1'>Kankariya Talab, Ahemdabad</p>
+                <p className='text-base text-gray-600 -mt-1'>{ride?.pickup}</p>
             </div>
             </div>
             <div className='flex items-center gap-5 p-3 border-b-2'>
             <i className="text-lg ri-map-pin-2-fill"></i>
             <div>
                 <h3 className='text-lg font-medium'></h3>
-                <p className='text-base text-gray-600 -mt-1'></p>
+                <p className='text-base text-gray-600 -mt-1'>{ride?.destination}</p>
             </div>
             </div>
             <div className='flex items-center gap-5 p-3'>
             <i className="ri-currency-line"></i>
             <div>
-                <h3 className='text-lg font-medium'>₹193.20</h3>
+                <h3 className='text-lg font-medium'>₹{ride?.fare}</h3>
                 <p className='text-base text-gray-600 -mt-1'>Cash</p>
             </div>
             </div>
@@ -49,6 +49,7 @@ const RidePopUp = ({setRidePopUpPanel,setConfirmRidePopUpPanel}) => {
         <button 
         onClick={()=>{
             setConfirmRidePopUpPanel(true);
+            confirmRide();
         }} className='bg-green-600 text-white font-semibold p-3 px-10 rounded-lg'>
             Accept
         </button>

@@ -9,31 +9,34 @@ const CaptainLogin = () => {
 
     const {captain,setCaptain}=useContext(CaptainDataContext);
     const navigate=useNavigate();
-
-    const submitHandler=async(e)=>{
+    const submitHandler = async (e) => {
         e.preventDefault();
-
-        const newData={
-            email:email,
-            password
+    
+        const newData = { email, password };
+    
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/login`, newData);
+    
+            if (response.status === 200) {
+                const data = response.data;
+    
+                // Update the captain context
+                setCaptain(data.findCap);
+    
+                // Store the auth token in local storage
+                localStorage.setItem('token', data.authToken);
+    
+                // Navigate to captain-home
+                navigate('/captain-home');
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
         }
-        console.log(newData);
-        
-        const response=await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/login`,newData)
-
-        if(response.status==200){
-            const data=await response.data;
-
-            localStorage.setItem('token',data.authToken);
-            setCaptain(data.findCap);
-
-            navigate('/captain-home');
-        }
-
+    
         setEmail('');
         setPassword('');
-    }
-
+    };
+    
   return (
     <div className='p-7 h-screen flex flex-col justify-between'>
         <div>

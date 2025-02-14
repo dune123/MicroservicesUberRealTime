@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {UserDataContext} from "../context/userContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios';
 
 const UserLogin = () => {
@@ -18,21 +20,48 @@ const UserLogin = () => {
             email:email,
             password:password
         }
+        try {
+            const response=await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`,userData)
 
-        const response=await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`,userData)
-
-        if(response.status===200){
-            const data=response.data;
-            setUser(data.user);
-           
-            localStorage.setItem('token',data.authToken);
-            navigate('/home');
+            if(response.status===200){
+                const data=response.data;
+                setUser(data.user);
+               
+                localStorage.setItem('token',data.authToken);
+                navigate('/home');
+            }
+            else{
+                console.log(response.data);
+                toast.error(response.data.message);
+            }
+            setEmail('');
+            setPassword('');
+        } catch (error) {
+            toast.error(error.error);
         }
-        setEmail('');
-        setPassword('');
     }
+
+    const CloseButton = ({ closeToast }) => (
+        <i className="material-icons" onClick={closeToast}>
+          X
+        </i>
+      );
   return (
     <div className='p-7 h-screen flex flex-col justify-between'>
+    <ToastContainer
+              style={{ height: "7vh", width: "30vw" }}
+              position="top-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              closeButton={CloseButton}
+            />
         <div>
         <img className='w-16 mb-10' src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="" />
         <form onSubmit={(e)=>submitHandler(e)}>

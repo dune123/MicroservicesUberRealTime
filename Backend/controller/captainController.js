@@ -18,6 +18,8 @@ module.exports.registerCaptain=async(req,res,next)=>{
             return res.status(400).json({message:'All fields are required'})
         }
 
+        
+
         const findCap=await CaptainModel.findOne({email});
 
         if(findCap){

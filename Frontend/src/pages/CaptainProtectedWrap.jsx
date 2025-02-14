@@ -23,7 +23,7 @@ const CaptainProtectedWrap = ({children}) => {
             }
         }).then((res)=>{
             if(res.status===200){
-                setCaptain(res.data.captain);
+                setCaptain(res.data.currentCaptain);
                 setIsLoading(false);
             }
         })
@@ -34,6 +34,8 @@ const CaptainProtectedWrap = ({children}) => {
         })
 
     },[token])
+
+
 
     if(isLoading){
         return (
