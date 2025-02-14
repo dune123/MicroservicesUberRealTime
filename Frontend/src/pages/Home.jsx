@@ -9,7 +9,7 @@ import ConfirmRide from "../components/ConfirmRide";
 import LookingForDriver from "../components/LookingForDriver";
 import WaitingForDriver from "../components/WaitingForDriver";
 import axios from "axios";
-import { SocketContext } from '../context/SocketContext';
+import { SocketContext } from '../context/socketContext';
 import { UserDataContext } from "../context/userContext.jsx";
 import { useNavigate } from "react-router-dom";
 
